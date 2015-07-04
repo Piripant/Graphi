@@ -26,9 +26,9 @@ maxy = 0
 minx = 0
 miny = 0
 
-step = 100
-minvalue = 1*step
-maxvalue = 100*step
+step = 100*int(input("Enter steps\n"))
+minvalue = step*int(input("Enter x min value\n"))
+maxvalue = step*int(input("Enter x max value\n"))
 
 
 for i in range(minvalue, maxvalue):
@@ -53,8 +53,5 @@ for i in range(minvalue, maxvalue):
     points.append([])
     points[i-minvalue].append(xresult)
     points[i-minvalue].append(yresult)
-
-print(maxx)
-print(maxy)
 
 DrawToFile.saveinfile("output.png", points, maxx-minx, maxy-miny)
