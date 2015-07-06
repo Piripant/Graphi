@@ -19,17 +19,16 @@ formula = re.split('([' + regexPattern + '])|' + multiPattern, formula)
 Equator.eqint(formula)
 xindex = [i for i, x in enumerate(formula) if x == "x"]
 
+step = 100*int(input("Enter steps\n"))
+minvalue = step*int(input("Enter x min value\n"))
+maxvalue = step*int(input("Enter x max value\n"))
+
 points = []
 
 maxx = 0
 maxy = 0
 minx = 0
 miny = 0
-
-step = 100*int(input("Enter steps\n"))
-minvalue = step*int(input("Enter x min value\n"))
-maxvalue = step*int(input("Enter x max value\n"))
-
 
 for i in range(minvalue, maxvalue):
     xresult = float(i)/step

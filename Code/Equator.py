@@ -11,31 +11,36 @@ def eqint(formula=[]):
             formula.pop(i)
 
         elif formula[i].isdigit():
-            formula[i] = float(formula[i])
-            i += 1
+            if i-1 > 0:
+                if formula[i-1] == "-":
+                    formula[i] = -float(formula[i])
+                    formula.pop(i-1)
+
+                elif formula[i-1] == "+":
+                    formula[i] = float(formula[i])
+                    formula.pop(i-1)
+
+                else:
+                    formula[i] = float(formula[i])
+                    i += 1
+
+            else:
+                formula[i] = float(formula[i])
+                i += 1
 
         else:
             i += 1
 
 
 def operation(operator="", number=0, result=0):
-    if operator == '+':
-        return result + number
-
-    elif operator == '-':
-        return result - number
-
-    elif operator == '*':
+    if operator == '*':
         return result * number
 
     elif operator == '/':
         return result / number
 
     elif operator == '^':
-        if result != 0.0:
-            return result ** number
-        else:
-            return 0.0
+        return result ** number
 
     else:
         return result + number

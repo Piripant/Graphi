@@ -23,10 +23,10 @@ def saveinfile(outputfile="output.png", points=[], maxx=1, maxy=1, xsize=2048, y
 
     for i in range(0, len(points)):
         if i+1 < len(points):
-            startx = points[i][0]*S+(xsize-Sx)/2
-            starty = points[i][1]*S+(xsize-Sy)/2
-            endx = points[i+1][0]*S+(xsize-Sx)/2
-            endy = points[i+1][1]*S+(xsize-Sy)/2
+            startx = -(points[i][0]*S+(xsize-Sx)/2)
+            starty = -(points[i][1]*S+(xsize-Sy)/2)
+            endx = -(points[i+1][0]*S+(xsize-Sx)/2)
+            endy = -(points[i+1][1]*S+(xsize-Sy)/2)
             painter.drawLine(startx, starty, endx, endy)
 
     print(startx)
