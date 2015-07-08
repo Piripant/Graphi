@@ -16,23 +16,20 @@ def saveinfile(outputfile="output.png", points=[], maxx=1, maxy=1, xsize=2048, y
     S = min(xsize/maxx, ysize/maxy)
     Sx = maxx*S
     Sy = maxy*S
+    #Offx = Sx/2-xsize/2
+    #Offy = Sx/2-ysize/2
+    Offx = (xsize-Sx)/2
+    Offy = (ysize-Sy)/2
 
-    print(S)
-    print(Sx)
-    print(Sy)
 
     for i in range(0, len(points)):
         if i+1 < len(points):
-            startx = -(points[i][0]*S+(xsize-Sx)/2)
-            starty = -(points[i][1]*S+(xsize-Sy)/2)
-            endx = -(points[i+1][0]*S+(xsize-Sx)/2)
-            endy = -(points[i+1][1]*S+(xsize-Sy)/2)
+            startx = points[i][0]*S+Offx
+            starty = points[i][1]*S+Offy
+            endx = points[i+1][0]*S+Offx
+            endy = points[i+1][1]*S+Offy
+            print("x: " + str(startx) + ", y: " + str(endx))
             painter.drawLine(startx, starty, endx, endy)
-
-    print(startx)
-    print(starty)
-    print(endx)
-    print(endy)
 
     painter.end()
 

@@ -7,17 +7,13 @@ functions = ["sin", "cos", "in", "log", "sqrt", "!"]
 def eqint(formula=[]):
     i = 0
     while i < len(formula):
-        if formula[i] is "" or formula[i] is None or formula[i] is " ":
+        if formula[i] is "+" or formula[i] is "" or formula[i] is None or formula[i] is " ":
             formula.pop(i)
 
         elif formula[i].isdigit():
             if i-1 > 0:
                 if formula[i-1] == "-":
                     formula[i] = -float(formula[i])
-                    formula.pop(i-1)
-
-                elif formula[i-1] == "+":
-                    formula[i] = float(formula[i])
                     formula.pop(i-1)
 
                 else:
@@ -33,7 +29,10 @@ def eqint(formula=[]):
 
 
 def operation(operator="", number=0, result=0):
-    if operator == '*':
+    if operator == "-":
+        return result - number
+
+    elif operator == '*':
         return result * number
 
     elif operator == '/':
