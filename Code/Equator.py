@@ -68,18 +68,23 @@ def resolve(formula=[]):
                 i += 1
 
         if i+1 < len(formula):
-            if type(formula[i]) in functions and type(formula[i+1]) is float:
+            if formula[i] in functions and type(formula[i+1]) is float:
                 result = operation(formula[i], functioner(formula[i], formula[i+1]), result)
                 i += 3
 
-            elif type(formula[i]) is not float and type(formula[i+1]) is float:
+            elif formula[i] not in functions and type(formula[i+1]) is float:
                 result = operation(formula[i], formula[i+1], result)
                 i += 2
 
-        if i+2 < len(formula):
-            if type(formula[i]) is not float and type(formula[i+1]) is not float:
+        if i+2 < len(formula):            
+            if formula[i] not in functions and formula[i+1] in functions and type(formula[i+2]) is float:
                 result = operation(formula[i], functioner(formula[i], functioner(formula[i+1], formula[i+2])), result)
                 i += 3
+				
+        if i+3 < len(formula):
+            if formula[i] not in functions and formula[i+1] in functions and formula[i+2] in functions and type(formula[i+3]) is float:
+                result = operation(formula[i], functioner(formula[i+1], functioner(formula[i+2], formula[i+3])), result)
+                i += 4
 
     return result
 
