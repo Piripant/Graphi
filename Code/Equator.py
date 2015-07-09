@@ -1,7 +1,7 @@
 __author__ = 'Davide'
 import math
 
-functions = ["sin", "cos", "in", "log", "sqrt", "!"]
+functions = ["sin", "cos", "in", "log", "sqrt", "!", "-"]
 
 
 def eqint(formula=[]):
@@ -29,10 +29,7 @@ def eqint(formula=[]):
 
 
 def operation(operator="", number=0, result=0):
-    if operator == "-":
-        return result - number
-
-    elif operator == '*':
+    if operator == '*':
         return result * number
 
     elif operator == '/':
@@ -71,7 +68,7 @@ def resolve(formula=[]):
                 i += 1
 
         if i+1 < len(formula):
-            if type(formula[i]) is not float and type(formula[i+1]) is float and formula[i] in functions:
+            if type(formula[i]) in functions and type(formula[i+1]) is float:
                 result = operation(formula[i], functioner(formula[i], formula[i+1]), result)
                 i += 3
 
@@ -81,7 +78,7 @@ def resolve(formula=[]):
 
         if i+2 < len(formula):
             if type(formula[i]) is not float and type(formula[i+1]) is not float:
-                result = operation(formula[i], functioner(formula[i+1], formula[i+2]), result)
+                result = operation(formula[i], functioner(formula[i], functioner(formula[i+1], formula[i+2])), result)
                 i += 3
 
     return result
@@ -91,14 +88,20 @@ def functioner(function="", parameter=0.0):
     if function == "sin":
         return math.sin(parameter)
 
-    if function == "cos":
+    elif function == "cos":
         return math.cos(parameter)
 
-    if function == "in":
+    elif function == "in":
         return 1/parameter
 
-    if function == "!":
+    elif function == "!":
         return math.factorial(parameter)
 
-    if function == "sqrt":
+    elif function == "sqrt":
         return math.sqrt(parameter)
+        
+    elif function == "-":
+        return -parameter
+        
+    else:
+        return parameter
