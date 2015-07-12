@@ -2,7 +2,7 @@ __author__ = 'Davide'
 import math
 
 functions = ["sin", "cos", "in", "log", "sqrt", "!", "-"]
-
+multopers = ["*", "/"]
 
 def eqint(formula=[]):
     i = 0
@@ -11,8 +11,8 @@ def eqint(formula=[]):
             formula.pop(i)
 
         elif formula[i].isdigit():
-            if i-1 > 0:
-                if formula[i-1] == "-":
+            if i-1 >= 0:
+                if formula[i-1] == '-':
                     formula[i] = -float(formula[i])
                     formula.pop(i-1)
 
@@ -44,14 +44,33 @@ def operation(operator="", number=0, result=0):
 
 def deparenter(formula=[]):
     stack = [[]]
+    multchain = False
     for i in range(0, len(formula)):
+        if i+1 < len(formula):
+            nextchar = formula[i+1]
+        else:
+            nextchar = ""
+        
+        # Appends if (*/
+        if formula[i] is "(":
+            stack.append([])
+        
+        elif nextchar in multopers and multchain is False:
+            multchain = True
+            stack.append([])
+        
+        # Appends char
         if formula[i] != "(" and formula[i] != ")":
             stack[len(stack)-1].append(formula[i])
-
-        elif formula[i] is "(":
-            stack.append([])
-
-        elif formula[i] is ")":
+        
+        # Resolves if ) or not */ (a multiplication chain has stopped)
+        if formula[i] is ")":
+            oper = list(stack[len(stack)-1])
+            stack.pop()
+            stack[len(stack)-1].append(resolve(oper))
+        
+        elif formula[i] not in multopers and nextchar not in multopers and formula[i] is not "(" and nextchar is not "(" and multchain is True:
+            multchain = False
             oper = list(stack[len(stack)-1])
             stack.pop()
             stack[len(stack)-1].append(resolve(oper))
