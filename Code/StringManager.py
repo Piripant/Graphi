@@ -56,7 +56,9 @@ def InputOuput():
         points.append([])
         points[i-minvalue].append(xresult)
         points[i-minvalue].append(yresult)
-    
+        print("Point: " + str(i+1-minvalue) + "/" + str(maxvalue-minvalue) + " (" + "%.2f" %((i+1-minvalue)/(maxvalue-minvalue)*100) + ")", end="\r")
+
+    print("\nDrawing to file output.png")
     DrawToFile.saveinfile("output.png", points, maxx, minx, maxy, miny)
 
 if __name__ == '__main__':
