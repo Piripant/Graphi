@@ -58,8 +58,11 @@ def InputOuput():
         points[i-minvalue].append(yresult)
         print("Point: " + str(i+1-minvalue) + "/" + str(maxvalue-minvalue) + " (" + "%.2f" %((i+1-minvalue)/(maxvalue-minvalue)*100) + ")", end="\r")
 
-    print("\nDrawing to file output.png")
-    DrawToFile.saveinfile("output.png", points, maxx, minx, maxy, miny)
+    w = int(input("\nWrite file width: "))
+    h = int(input("Write file height: "))
+    filename = input("Write file name (without extension): ") + ".png"
+    print("Drawing to file " + filename)
+    DrawToFile.saveinfile(filename, points, maxx, minx, maxy, miny, w, h)
 
 if __name__ == '__main__':
     InputOuput()
