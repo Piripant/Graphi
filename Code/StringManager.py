@@ -56,7 +56,7 @@ def InputOuput():
         points.append([])
         points[i-minvalue].append(xresult)
         points[i-minvalue].append(yresult)
-        print("Point: " + str(i+1-minvalue) + "/" + str(maxvalue-minvalue) + " (" + "%.2f" %((i+1-minvalue)/(maxvalue-minvalue)*100) + ")", end="\r")
+        print("Point: " + str(i+1-minvalue) + "/" + str(maxvalue-minvalue) + " (" + "%.2f" %((i+1-minvalue)/(maxvalue-minvalue)*100) + "%)", end="\r")
 
     w = int(input("\nWrite file width: "))
     h = int(input("Write file height: "))
